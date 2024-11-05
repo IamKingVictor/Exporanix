@@ -1,4 +1,5 @@
 import Header from "@/components/Header"
+import ArtistContent from "./component/ArtistContent"
 
 
 const Artist = () => {
@@ -18,12 +19,13 @@ const Artist = () => {
               text-white
               text-4xl
               sm:text-5xl
-              lg:text-7xl
+              lg:text7xl
               font-bold
               "
               >
-                Artist
+                Our Top Artists
               </h1>
+              <ArtistContent />
             </div>
     </Header>
   )
