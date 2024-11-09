@@ -2,13 +2,8 @@
 
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
-import {
-  SupabaseClient,
-  useSessionContext,
-} from "@supabase/auth-helpers-react";
-import { supabase } from "@supabase/auth-ui-shared";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -26,9 +21,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    if (!user?.id) {
-      return;
-    }
+    if (!user?.id) return;
 
     const fetchData = async () => {
       const { data, error } = await supabaseClient
@@ -42,14 +35,17 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         setIsLiked(true);
       }
     };
+
     fetchData();
   }, [songId, supabaseClient, user?.id]);
+
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
 
   const handleLike = async () => {
     if (!user) {
       return authModal.onOpen();
     }
+
     if (isLiked) {
       const { error } = await supabaseClient
         .from("liked_songs")
@@ -61,6 +57,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         toast.error(error.message);
       } else {
         setIsLiked(false);
+        toast.success("Unliked");
       }
     } else {
       const { error } = await supabaseClient.from("liked_songs").insert({
@@ -75,15 +72,12 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         toast.success("Liked");
       }
     }
+
     router.refresh();
   };
 
   return (
-    <button
-      onClick={handleLike}
-      className="hover:opacity-75
-        transition"
-    >
+    <button onClick={handleLike} className="hover:opacity-75 transition">
       <Icon color={isLiked ? "#ef4444" : "white"} size={25} />
     </button>
   );

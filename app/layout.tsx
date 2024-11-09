@@ -38,24 +38,22 @@ export default async function RootLayout({
           <UserProvider>
             <ModalProvider />
             <Sidebar songs={userSongs}>
-  <div className="main-content bg-gradient-to-b from-neutral-800 to-neutral-900 min-h-screen">
-    {children}
+             <div className="main-content bg-gradient-to-b from-neutral-800 to-neutral-900 min-h-screen">
+              {children}
     
-    <div className="bg-neutral-900 border-t border-neutral-800">
-    <div className="p-4 mt-8">
-      <h2 className="text-white text-2xl font-semibold">Top Artists This Month</h2>
-      <ArtistContent />
-      <Link href="/artist" className="text-gray-400 hover:text-white mt-4 inline-block">
-        Show All
-      </Link>
-    </div>
-    </div>
-  </div>
-  
-</Sidebar>
-
-            <Player />
-          </UserProvider>
+                 <div className=" border-t border-neutral-800">
+                   <div className="p-4 mt-8">
+                       <h2 className="text-white text-2xl font-semibold">Top Artists This Month</h2>
+                     <ArtistContent />
+                   <Link href="/artist" className="text-gray-400 hover:text-white mt-4 inline-block">
+                Show All
+             </Link>
+          </div>
+        </div>
+     </div> 
+  </Sidebar>
+    <Player />
+      </UserProvider>
         </SupabaseProvider>
       </body>
     </html>

@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import ArtistContent from "./component/ArtistContent"
+import Player from "@/components/Player"
 
 
 const Artist = () => {
@@ -27,7 +28,9 @@ const Artist = () => {
               </h1>
               <ArtistContent />
             </div>
+            <Player />
     </Header>
+   
   )
 }
 
