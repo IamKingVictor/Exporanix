@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+
 import { Song } from "@/types"
 import MediaItem from "./MediaItem"
 import LikeButton from "./LikeButton"
@@ -119,7 +121,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
 
   const handlePlay = () => {
     if (!sound) return
-    isPlaying ? pause() : play()
+    isPlaying ? pause() : play() // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   }
 
   const toggleMute = () => {

@@ -4,12 +4,13 @@ import { BiSearch } from "react-icons/bi"
 import { HiHome } from "react-icons/hi"
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 import { twMerge } from "tailwind-merge"
-import Button from "./Button"
-//import useAuthModal from "@/hooks/useAuthModal"
-import { useSupabaseClient } from "@supabase/auth-helpers-react"
-import { useUser } from "@/hooks/useUser"
-import { FaUserAlt } from "react-icons/fa"
-import toast from "react-hot-toast"
+// import Button from "./Button"; // Leaving commented as per your request
+// import useAuthModal from "@/hooks/useAuthModal"; // Leaving commented as per your request
+//import { useSupabaseClient } from "@supabase/auth-helpers-react"
+// import { useUser } from "@/hooks/useUser"; // Leaving commented as per your request
+// import { FaUserAlt } from "react-icons/fa"; // Leaving commented as per your request
+//import toast from "react-hot-toast"
+import Image from "next/image"
 
 interface HeaderProps {
   children: React.ReactNode
@@ -17,23 +18,18 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
-  // const authModal = useAuthModal()
   const router = useRouter()
-
-  const supabaseClient = useSupabaseClient()
-  const { user } = useUser()
-
-  const handleLogout = async () => {
-    const { error } = await supabaseClient.auth.signOut()
-    //TODO: Reset any playing songs
-    router.refresh()
-
-    if (error) {
-      toast.error(error.message)
-    } else {
-      toast.success("Logged out")
-    }
-  }
+  //const supabaseClient = useSupabaseClient()
+  // const { user } = useUser(); // Leaving commented as per your request
+  // const handleLogout = async () => { // Leaving commented as per your request
+  //   const { error } = await supabaseClient.auth.signOut();
+  //   router.refresh();
+  //   if (error) {
+  //     toast.error(error.message);
+  //   } else {
+  //     toast.success("Logged out");
+  //   }
+  // };
 
   return (
     <div
@@ -103,73 +99,19 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             <BiSearch className="text-black" size={20} />
           </button>
         </div>
-
         <div className="absolute right-4 mt-4 md:right-6 md:top-6">
-          <img
+          <Image
             src="/images/logo.png"
             alt="Logo"
+            width={64}
+            height={64}
             className="
-      w-16 h-auto md:w-32 
-      cursor-pointer 
-      hover:opacity-80 
-      transition-opacity duration-300
-    "
+            cursor-pointer 
+            hover:opacity-80 
+            transition-opacity duration-300
+          "
           />
         </div>
-
-        {/* <div
-          className="
-        flex
-        justify-between
-        items-center
-        gap-x-4
-        "
-        >
-          {user ? (
-            <div className="flex gap-x-4 items-center">
-              <Button onClick={handleLogout} className="bg-white px-6 py-2">
-                Logout
-              </Button>
-              <Button>
-                <div
-                  className="bg-white rounded-full p-2"
-                  style={{ backgroundColor: "white" }}
-                >
-                  <FaUserAlt
-                    onClick={() => router.push("/account")}
-                    className="text-black"
-                    style={{ backgroundColor: "white" }}
-                  />
-                </div>
-              </Button>
-            </div>
-          ) : (
-            <>
-              <div>
-                <Button
-                  onClick={() => {}}
-                  className="
-    bg-transparent
-    text-neutral-300
-    font-medium"
-                >
-                  Sign Up
-                </Button>
-              </div>
-              <div>
-                <Button
-                  // onClick={authModal.onOpen}
-                  className="
-    bg-white
-    px-6
-    py-2"
-                >
-                  Log In
-                </Button>
-              </div>
-            </>
-          )}
-        </div> */}
       </div>
       {children}
     </div>

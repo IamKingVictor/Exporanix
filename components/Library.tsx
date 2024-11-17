@@ -1,8 +1,7 @@
 "use client"
 
-//import useAuthModal from "@/hooks/useAuthModal"
 import useUploadModal from "@/hooks/useUploadModal"
-import { useUser } from "@/hooks/useUser"
+// import { useUser } from "@/hooks/useUser"; // Leaving commented as per your request
 import { AiOutlinePlus } from "react-icons/ai"
 import { TbPlaylist } from "react-icons/tb"
 import MediaItem from "./MediaItem"
@@ -13,17 +12,13 @@ interface LibraryProps {
 }
 
 const Library: React.FC<LibraryProps> = ({ songs }) => {
-  //const authModal = useAuthModal()
   const uploadModal = useUploadModal()
-  const { user } = useUser()
+  // const { user } = useUser(); // Leaving commented as per your request
 
   const onClick = () => {
-    // if (!user) {
-    //   return authModal.onOpen()
+    // if (!user) { // Leaving commented as per your request
+    //   return authModal.onOpen(); // Leaving commented as per your request
     // }
-
-    // TODO: Add subscription check logic here
-
     return uploadModal.onOpen()
   }
 
