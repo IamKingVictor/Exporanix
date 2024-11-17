@@ -1,43 +1,33 @@
-"use client";
-
-import * as RadixSlider from "@radix-ui/react-slider";
+import React from "react"
 
 interface SliderProps {
-  value?: number;
-  onChange?: (value: number) => void;
-  className?: string;
-  trackClassName?: string;
+  value: number
+  onChange: (value: number) => void
+  max?: number
+  step?: number
+  ariaLabel?: string
+  className?: string
 }
 
 const Slider: React.FC<SliderProps> = ({
-  value = 1,
+  value,
   onChange,
-  className = "",
-  trackClassName = ""
+  max = 1,
+  step = 0.01,
+  ariaLabel,
+  className,
 }) => {
-  const handleChange = (newValue: number[]) => {
-    onChange?.(newValue[0]);
-  };
-
   return (
-    <RadixSlider.Root
-      className={`relative flex items-center select-none touch-move w-full h-10 ${className}`}
-      defaultValue={[1]}
-      value={[value]}
-      onValueChange={handleChange}
-      max={1}
-      step={0.1}
-      aria-label="Volume"
-    >
-      <RadixSlider.Track
-        className={`bg-neutral-600 relative grow rounded-full h-[3px] ${trackClassName}`}
-      >
-        <RadixSlider.Range
-          className="absolute bg-white rounded-full h-full"
-        />
-      </RadixSlider.Track>
-    </RadixSlider.Root>
-  );
-};
+    <input
+      type="range"
+      value={value}
+      max={max}
+      step={step}
+      onChange={(e) => onChange(Number(e.target.value))}
+      aria-label={ariaLabel}
+      className={`w-full h-2 bg-gray-600 rounded-lg cursor-pointer focus:outline-none accent-red-500 ${className}`}
+    />
+  )
+}
 
-export default Slider;
+export default Slider

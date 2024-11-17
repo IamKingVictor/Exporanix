@@ -1,21 +1,19 @@
 // components/ArtistContent.tsx
-import Image from 'next/image';
+import Image from "next/image"
 
 const artists = [
-  { name: 'Testimony-Jaga', image: '/artist/Testimony.jpg' },
-  { name: 'Sister Wisdom', image: '/artist/SisterWisdom.jpg' },
-  { name: 'Ur Flames', image: '/artist/Ur-flames.jpg' },
-  { name: 'Rap Nation', image: '/artist/Rap-nation.jpg' },
-];
+  { name: "Testimony-Jaga", image: "/artist/Testimony.jpg" },
+  { name: "Sister Wisdom", image: "/artist/SisterWisdom.jpg" },
+  { name: "Ur Flames", image: "/artist/Ur-flames.jpg" },
+  { name: "Rap Nation", image: "/artist/Rap-nation.jpg" },
+  { name: "TB1", image: "/artist/TB1.jpg" },
+]
 
 const ArtistContent = () => {
   return (
     <div className="flex flex-wrap gap-6 mt-8">
       {artists.map((artist, index) => (
-        <div
-          key={index}
-          className="flex flex-col items-center group"
-        >
+        <div key={index} className="flex flex-col items-center group">
           <div className="relative w-32 h-32 overflow-hidden rounded-full">
             <Image
               src={artist.image}
@@ -30,7 +28,7 @@ const ArtistContent = () => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ArtistContent;
+export default ArtistContent

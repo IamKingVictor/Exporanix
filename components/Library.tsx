@@ -1,44 +1,38 @@
-"use client";
+"use client"
 
-import useAuthModal from "@/hooks/useAuthModal";
-import useUploadModal from "@/hooks/useUploadModal";
-import { useUser } from "@/hooks/useUser";
-import { AiOutlinePlus } from "react-icons/ai";
-import { TbPlaylist } from "react-icons/tb";
-import MediaItem from "./MediaItem";
-import { Song } from "@/types";
+//import useAuthModal from "@/hooks/useAuthModal"
+import useUploadModal from "@/hooks/useUploadModal"
+import { useUser } from "@/hooks/useUser"
+import { AiOutlinePlus } from "react-icons/ai"
+import { TbPlaylist } from "react-icons/tb"
+import MediaItem from "./MediaItem"
+import { Song } from "@/types"
 
 interface LibraryProps {
-  songs: Song[];
+  songs: Song[]
 }
 
 const Library: React.FC<LibraryProps> = ({ songs }) => {
-  const authModal = useAuthModal();
-  const uploadModal = useUploadModal();
-  const { user } = useUser();
+  //const authModal = useAuthModal()
+  const uploadModal = useUploadModal()
+  const { user } = useUser()
 
   const onClick = () => {
-    if (!user) {
-      return authModal.onOpen();
-    }
+    // if (!user) {
+    //   return authModal.onOpen()
+    // }
 
     // TODO: Add subscription check logic here
 
-    return uploadModal.onOpen();
-  };
+    return uploadModal.onOpen()
+  }
 
   return (
     <div className="flex flex-col">
-      <div
-        className="flex items-center justify-between px-5 py-4"
-      >
-        <div
-          className="inline-flex items-center gap-x-2"
-        >
+      <div className="flex items-center justify-between px-5 py-4">
+        <div className="inline-flex items-center gap-x-2">
           <TbPlaylist className="text-neutral-400" size={26} />
-          <p className="text-neutral-400 font-medium text-md">
-            Your Library
-          </p>
+          <p className="text-neutral-400 font-medium text-md">Your Library</p>
         </div>
         <AiOutlinePlus
           onClick={onClick}
@@ -52,7 +46,7 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Library;
+export default Library

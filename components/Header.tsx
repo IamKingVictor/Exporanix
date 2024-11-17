@@ -5,7 +5,7 @@ import { HiHome } from "react-icons/hi"
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 import { twMerge } from "tailwind-merge"
 import Button from "./Button"
-import useAuthModal from "@/hooks/useAuthModal"
+//import useAuthModal from "@/hooks/useAuthModal"
 import { useSupabaseClient } from "@supabase/auth-helpers-react"
 import { useUser } from "@/hooks/useUser"
 import { FaUserAlt } from "react-icons/fa"
@@ -17,7 +17,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
-  const authModal = useAuthModal()
+  // const authModal = useAuthModal()
   const router = useRouter()
 
   const supabaseClient = useSupabaseClient()
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut()
-    //TODO: Reset any plyaing songs
+    //TODO: Reset any playing songs
     router.refresh()
 
     if (error) {
@@ -104,7 +104,20 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
 
-        <div
+        <div className="absolute right-4 mt-4 md:right-6 md:top-6">
+          <img
+            src="/images/logo.png"
+            alt="Logo"
+            className="
+      w-16 h-auto md:w-32 
+      cursor-pointer 
+      hover:opacity-80 
+      transition-opacity duration-300
+    "
+          />
+        </div>
+
+        {/* <div
           className="
         flex
         justify-between
@@ -145,7 +158,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               </div>
               <div>
                 <Button
-                  onClick={authModal.onOpen}
+                  // onClick={authModal.onOpen}
                   className="
     bg-white
     px-6
@@ -156,7 +169,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               </div>
             </>
           )}
-        </div>
+        </div> */}
       </div>
       {children}
     </div>

@@ -6,7 +6,7 @@ import { useState } from "react"
 import Input from "./Input"
 import Button from "./Button"
 import toast from "react-hot-toast"
-import { useUser } from "@/hooks/useUser"
+//import { useUser } from "@/hooks/useUser"
 import uniqid from "uniqid"
 import { useSupabaseClient } from "@supabase/auth-helpers-react"
 import { useRouter } from "next/navigation"
@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation"
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false)
   const uploadModal = useUploadModal()
-  const { user } = useUser()
+  //const { user } = useUser()
   const supabaseClient = useSupabaseClient()
   const router = useRouter()
 
@@ -41,7 +41,7 @@ const UploadModal = () => {
       const imageFile = values.image?.[0]
       const songFile = values.song?.[0]
 
-      if (!imageFile || !songFile || !user) {
+      if (!imageFile || !songFile) {
         toast.error("Missing fields")
         return
       }
@@ -78,7 +78,7 @@ const UploadModal = () => {
       const { error: supabaseError } = await supabaseClient
         .from("songs")
         .insert({
-          user_id: user.id,
+          //user_id: user.id,
           title: values.title,
           author: values.author,
           image_path: imageData.path,
@@ -101,7 +101,7 @@ const UploadModal = () => {
       setIsLoading(false)
     }
   }
-  
+
   return (
     <Modal
       title="Add a song"
