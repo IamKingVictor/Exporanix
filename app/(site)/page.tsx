@@ -3,6 +3,7 @@ import Header from "@/components/Header"
 import ListItem from "@/components/ListItem"
 import PageContent from "./components/PageContent"
 import TopArtists from "./TopArtists"
+import AnnouncementBanner from "@/components/AnnouncementBanner"
 
 export const revalidate = 0
 
@@ -52,6 +53,7 @@ export default async function Home() {
         </div>
       </Header>
       <div className="mt-2 mb-7 px-6">
+        <AnnouncementBanner />
         <div className="flex justify-between items-center">
           <TopArtists />
         </div>
