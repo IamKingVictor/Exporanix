@@ -19,7 +19,6 @@ const reels = [
   },
 ];
 
-
 const AnnouncementBanner = () => {
   const [index, setIndex] = useState(0);
 
@@ -44,11 +43,15 @@ const AnnouncementBanner = () => {
               className="absolute flex items-center w-full h-full"
             >
               {/* Image */}
+              <div className="relative w-full h-full">
               <Image
                 src={reel.image}
                 alt={reel.text}
-                className="w-full lg:w-1/2 h-full object-cover rounded-lg"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
               />
+              </div>
 
               {/* Text */}
               <div className="hidden lg:flex flex-col justify-center items-start p-4 w-1/2 bg-gray-900 text-white">

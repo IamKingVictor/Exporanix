@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-
 import { Song } from "@/types"
 import MediaItem from "./MediaItem"
 import LikeButton from "./LikeButton"
@@ -38,7 +36,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     onplay: () => {
       setIsPlaying(true)
       setDuration(sound?.duration() || 0)
-      // Start progress tracking immediately
       if (sound) {
         setCurrentTime(sound.seek() || 0)
         progressInterval.current = setInterval(() => {
@@ -102,13 +99,12 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   const handleSeek = (value: number) => {
     if (!sound) return
 
-    // Clear existing interval
     if (progressInterval.current) {
       clearInterval(progressInterval.current)
     }
     sound.seek(value)
     setCurrentTime(value)
-    // Restart the interval if playing
+
     if (isPlaying) {
       progressInterval.current = setInterval(() => {
         if (sound) {
@@ -121,7 +117,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
 
   const handlePlay = () => {
     if (!sound) return
-    isPlaying ? pause() : play() // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    isPlaying ? pause() : play()
   }
 
   const toggleMute = () => {
@@ -277,35 +273,32 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
           />
         </div>
 
-        {/* Progress bar - show on both mobile and desktop */}
-        <div className="w-full flex items-center justify-between px-4 gap-x-2">
-          <span className="text-xs text-white">{formatTime(currentTime)}</span>
+        {/* Seek and duration */}
+        <div className="flex justify-between items-center w-full px-4 mt-2">
+          <span className="text-xs text-neutral-400">{formatTime(currentTime)}</span>
           <Slider
             value={currentTime}
             onChange={handleSeek}
             max={duration}
-            step={0.1}
-            ariaLabel="Seek"
-            className="w-full h-4 relative flex items-center cursor-pointer"
+            step={1}
+            className="w-full h-1.5 bg-gray-400" // Thinner slider
           />
-          <span className="text-xs text-white">{formatTime(duration)}</span>
+          <span className="text-xs text-neutral-400">{formatTime(duration)}</span>
         </div>
       </div>
 
-      {/* Right section - Volume control (desktop only) */}
-      <div className="hidden md:flex w-full justify-end pr-2">
-        <div className="flex items-center gap-x-2 w-[120px]">
-          <VolumeIcon
-            onClick={toggleMute}
-            className="cursor-pointer text-neutral-400 hover:text-red-500 transition"
-            size={24}
-          />
-          <Slider
-            value={volume}
-            onChange={setVolume}
-            className="w-full h-[2px] hover:h-[6px] bg-white"
-          />
-        </div>
+      {/* Right section - Volume controls */}
+      <div className="flex items-center justify-end gap-x-2">
+        <VolumeIcon
+          onClick={toggleMute}
+          size={24}
+          className="cursor-pointer text-neutral-400 hover:text-white transition"
+        />
+        <Slider
+          value={volume * 100}
+          onChange={(value) => setVolume(value / 100)}
+          className="w-32 h-1.5 bg-gray-400" // Thinner slider
+        />
       </div>
     </div>
   )
