@@ -117,7 +117,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
 
   const handlePlay = () => {
     if (!sound) return
-    isPlaying ? pause() : play()
+    return isPlaying ? pause() : play()
   }
 
   const toggleMute = () => {
@@ -273,15 +273,14 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
           />
         </div>
 
-        {/* Seek and duration */}
-        <div className="flex justify-between items-center w-full px-4 mt-2">
+        {/* Seek bar */}
+        <div className="flex items-center gap-x-3 mt-4 w-full">
           <span className="text-xs text-neutral-400">{formatTime(currentTime)}</span>
           <Slider
             value={currentTime}
-            onChange={handleSeek}
             max={duration}
-            step={1}
-            className="w-full h-1.5 bg-gray-400" // Thinner slider
+            onChange={handleSeek}
+            className="w-full h-1 bg-gray-400" // Thinner seek slider
           />
           <span className="text-xs text-neutral-400">{formatTime(duration)}</span>
         </div>
@@ -297,7 +296,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         <Slider
           value={volume * 100}
           onChange={(value) => setVolume(value / 100)}
-          className="w-32 h-1.5 bg-gray-400" // Thinner slider
+          className="w-32 h-1.5 bg-gray-400" // Thinner volume slider
         />
       </div>
     </div>
