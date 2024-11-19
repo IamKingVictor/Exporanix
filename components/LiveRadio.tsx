@@ -28,7 +28,7 @@ const LiveRadio = () => {
       <div className="flex flex-col sm:flex-row items-center justify-between">
         <div className="flex flex-col items-center mb-4 sm:mb-0">
           <p className="text-lg font-semibold">Now Streaming:</p>
-          <p className="text-red-400 text-xl font-bold">TCM Christian Radio</p>
+          <p className="text-red-400 text-xl font-bold">LMAM STUDIOS</p>
         </div>
         <button
           onClick={togglePlay}
